@@ -1,0 +1,43 @@
+// Desafios JavaScript na DIO têm funções "gets" e "print" acessíveis globalmente:
+//- "gets" : lê UMA linha com dado(s) de entrada (inputs) do usuário;
+//- "print": imprime um texto de saída (output), pulando linha.
+
+// Lê a quantidade de empréstimos
+let loanCount = parseInt(gets());
+
+// Lista para armazenar os empréstimos
+let loans = [];
+
+for (let i = 0; i < loanCount; i++) {
+    loans.push(parseInt(gets()));
+}
+
+// Lê os limites e extrai os valores
+let lowLimit = parseInt(gets().split(":")[1].trim());
+let mediumLimit = parseInt(gets().split(":")[1].trim());
+
+// Listas para classificar os empréstimos
+let lowRisk = [];
+let mediumRisk = [];
+let highRisk = [];
+
+// Classifique conforme os limites
+for (let valor of loans) {
+    if (valor <= lowLimit) {
+        lowRisk.push(valor);
+    } else if (valor <= mediumLimit) {
+        mediumRisk.push(valor);
+    } else {
+        highRisk.push(valor);
+    }
+}
+
+// Impressão dos resultados
+print("baixo: " + joinList(lowRisk));
+print("medio: " + joinList(mediumRisk));
+print("alto: " + joinList(highRisk));
+
+// Função auxiliar para juntar os elementos da lista separados por vírgula
+function joinList(list) {
+    return list.join(",");
+}
